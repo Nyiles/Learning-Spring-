@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,14 @@ public class PlayerStatsService {
     public PlayerStatsService(PlayerStatsRepository playerStatsRepository){
         this.playerStatsRepository = playerStatsRepository;
     }
-    public void savePlayersFromCSV() {
+    public void savePlayerStatsFromCSV() {
         List<PlayerStats> playersStats = new ArrayList<>();
         String[] data ={""};
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:/Users/nicny/OneDrive/Documents/Homework/PlayerStats.csv"))) {
+        try {
+            BufferedReader br;
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("csvs/playerStats.csv");
+            br = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {

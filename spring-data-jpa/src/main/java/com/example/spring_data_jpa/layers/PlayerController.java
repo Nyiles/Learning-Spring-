@@ -21,18 +21,21 @@ public class PlayerController {
 //    public void uploadPlayers(){
 //        playerService.savePlayersFromCSV();
 //    }
-@GetMapping("/upload")
+
+    // upload nations and teams first (key restrictions)
+@GetMapping("/upload/player")
     public String uploadPlayer() {
         try {
             playerService.savePlayersFromCSV();
-            return "happiness";
+            return "players have been succesfully uploaded";
         }
         catch (Exception e){
             e.printStackTrace();
-            return "error";
+            return "failed to upload players";
         }
 
     }
+    // this cross-origin was to test connection to my html using this REST API and Javascript
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/all")
     public List<Player> getPlayers(){

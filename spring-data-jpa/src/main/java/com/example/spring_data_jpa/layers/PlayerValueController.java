@@ -10,15 +10,16 @@ public class PlayerValueController {
     public PlayerValueController(PlayerValueService playerValueService) {
         this.playerValueService = playerValueService;
     }
+    // upload team and nation and then player first (key restrictions)
     @GetMapping("player/values/upload")
     public String uploadPlayerValues(){
         try {
-            playerValueService.savePlayersFromCSV();
-            return "yay";
+            playerValueService.savePlayerValuesFromCSV();
+            return "player values upload successful";
 
         }catch (Exception e){
             e.printStackTrace();
-            return "not working";
+            return "player values upload failed";
         }
 
     }

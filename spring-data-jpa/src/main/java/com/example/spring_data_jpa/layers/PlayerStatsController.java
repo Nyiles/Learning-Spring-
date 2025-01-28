@@ -11,12 +11,15 @@ public class PlayerStatsController {
         this.playerStatsService = playerStatsService;
     }
 
+    // upload nation, team and then player first (key restirictions)
     @GetMapping("/player/stats/upload")
-    public void uploadPlayerStats(){
+    public String uploadPlayerStats(){
         try {
-            playerStatsService.savePlayersFromCSV();
+            playerStatsService.savePlayerStatsFromCSV();
+            return "upload player stats successful";
         }catch (Exception e){
             e.printStackTrace();
+            return "upload player stats not successful";
         }
 
     }

@@ -11,14 +11,15 @@ public class NationController {
         this.nationService = nationService;
     }
 
+    // upload this or team first
     @GetMapping("nations/upload")
     public String uploadNations(){
         try {
-            nationService.savePlayersFromCSV();
-            return "yay";
+            nationService.saveNationsFromCSV();
+            return "nations upload is working ";
         }catch (Exception e){
             e.printStackTrace();
-            return "not working";
+            return "nations upload is not working";
         }
     }
 }

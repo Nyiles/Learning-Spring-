@@ -12,14 +12,15 @@ public class TeamController {
         this.teamService = teamService;
     }
 
+    // upload this or team first
     @GetMapping("teams/upload")
     public String uploadTeam(){
         try {
-            teamService.savePlayersFromCSV();
-            return "yur";
+            teamService.saveTeamsFromCSV();
+            return "teams have been successfully uploaded";
         }catch (Exception e){
             e.printStackTrace();
-            return "not working";
+            return "teams have failed to upload";
         }
 
     }
